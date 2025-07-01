@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife Pro - Your Complete Health & Fitness Guide</title>
+    <meta name="description" content="Comprehensive health precautions, food guidance, and gym diet planning for optimal fitness results">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-color: #00d4aa;
+            --secondary-color: #1a1a2e;
+            --accent-color: #ff6b6b;
+            --text-dark: #2c3e50;
+            --text-light: #ecf0f1;
+            --background: #f8fafc;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --gradient-primary: linear-gradient(135deg, #00d4aa 0%, #007991 100%);
+            --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background);
+            overflow-x: hidden;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header Styles */
+        .header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Diet Planning Section */
+        .diet-planner {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diet-planner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .diet-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group select,
+        .form-group input {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            color: var(--text-dark);
+        }
+
+        .diet-result {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        /* BMI Calculator */
+        .bmi-calculator {
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .bmi-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .bmi-input {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            width: 150px;
+        }
+
+        .bmi-result {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        /* Health Tips */
+        .health-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tip-card {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: scale(1.05);
+        }
+
+        .tip-card h4 {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-color);
+            color: var(--text-light);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--secondary-color);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: var(--card-shadow);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .diet-form {
+                grid-template-columns: 1fr;
+            }
+
+            .bmi-form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-color);
+        }
+    </style>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                FitLife Pro
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#health-tips">Health Tips</a></li>
+                <li><a href="#nutrition">Nutrition</a></li>
+                <li><a href="#diet-planner">Diet Planner</a></li>
+                <li><a href="#bmi-calculator">BMI Calculator</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Transform Your Health Journey</h1>
+            <p>Complete health precautions, personalized nutrition guidance, and expert gym diet planning all in one place</p>
+            <div class="cta-buttons">
+                <a href="#diet-planner" class="btn btn-primary">
+                    <i class="fas fa-utensils"></i>
+                    Start Diet Planning
+                </a>
+                <a href="#health-tips" class="btn btn-secondary">
+                    <i class="fas fa-lightbulb"></i>
+                    Explore Health Tips
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Precautions Section -->
+    <section class="section" id="health-tips">
+        <div class="container">
+            <h2 class="section-title">Essential Health Precautions</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-shield-alt card-icon"></i>
+                    <h3>Pre-Workout Safety</h3>
+                    <p>Always warm up for 5-10 minutes before intense exercise. Check your heart rate and ensure proper hydration. Consult a doctor if you have any cardiovascular conditions.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-dumbbell card-icon"></i>
+                    <h3>Exercise Form</h3>
+                    <p>Maintain proper form to prevent injuries. Start with lighter weights and gradually increase intensity. Never sacrifice form for heavier weights.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-clock card-icon"></i>
+                    <h3>Rest & Recovery</h3>
+                    <p>Allow 48-72 hours between training the same muscle groups. Get 7-9 hours of quality sleep for optimal recovery and muscle growth.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-tint card-icon"></i>
+                    <h3>Hydration</h3>
+                    <p>Drink water before, during, and after workouts. Aim for at least 8-10 glasses daily, more if you're active or in hot weather.</p>
+                </div>
+            </div>
+
+            <div class="health-tips">
+                <div class="tip-card">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Warning Signs</h4>
+                    <p>Stop exercising immediately if you experience chest pain, dizziness, shortness of breath, or severe fatigue.</p>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-thermometer"></i> Heat Safety</h4>
+                    <p>Exercise in cooler parts of the day. Wear breathable clothing and take breaks in hot weather.</p>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-user-md"></i> Medical Checkup</h4>
+                    <p>Get regular health checkups, especially if you're over 40 or have pre-existing conditions.</p>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-pills"></i> Supplements</h4>
+                    <p>Consult healthcare providers before taking any supplements. Focus on whole foods first.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition Guidance -->
+    <section class="section" id="nutrition">
+        <div class="container">
+            <h2 class="section-title">Nutrition Guidance</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-apple-alt card-icon"></i>
+                    <h3>Macronutrients</h3>
+                    <p><strong>Proteins:</strong> 0.8-1.2g per kg body weight for general health, 1.6-2.2g for muscle building.<br>
+                    <strong>Carbohydrates:</strong> 45-65% of total calories for energy.<br>
+                    <strong>Fats:</strong> 20-35% of total calories for hormone production.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-clock card-icon"></i>
+                    <h3>Meal Timing</h3>
+                    <p><strong>Pre-workout:</strong> Eat 1-3 hours before with carbs and protein.<br>
+                    <strong>Post-workout:</strong> Consume protein within 2 hours of training.<br>
+                    <strong>Overall:</strong> Eat every 3-4 hours to maintain energy levels.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-leaf card-icon"></i>
+                    <h3>Food Quality</h3>
+                    <p>Choose whole, unprocessed foods. Include plenty of vegetables, fruits, lean proteins, whole grains, and healthy fats like nuts and olive oil.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-chart-line card-icon"></i>
+                    <h3>Portion Control</h3>
+                    <p>Use your hand as a guide: palm-sized protein, cupped hand of carbs, thumb-sized fats, and fist-sized vegetables per meal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BMI Calculator -->
+    <section class="section" id="bmi-calculator">
+        <div class="container">
+            <div class="bmi-calculator">
+                <h2>BMI Calculator</h2>
+                <p>Calculate your Body Mass Index to understand your health status</p>
+                <div class="bmi-form">
+                    <input type="number" id="height" class="bmi-input" placeholder="Height (cm)" min="100" max="250">
+                    <input type="number" id="weight" class="bmi-input" placeholder="Weight (kg)" min="30" max="300">
+                    <button onclick="calculateBMI()" class="btn btn-primary">Calculate BMI</button>
+                </div>
+                <div class="bmi-result" id="bmiResult">
+                    <h3>Your BMI Result</h3>
+                    <div id="bmiValue"></div>
+                    <div id="bmiCategory"></div>
+                    <div id="bmiAdvice"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diet Planner -->
+    <section class="section" id="diet-planner">
+        <div class="container">
+            <div class="diet-planner">
+                <h2>Personalized Diet Planner</h2>
+                <p>Get customized meal recommendations based on your fitness goals</p>
+                <form class="diet-form" id="dietForm">
+                    <div class="form-group">
+                        <label for="goal">Fitness Goal</label>
+                        <select id="goal" required>
+                            <option value="">Select Goal</option>
+                            <option value="weight_loss">Weight Loss</option>
+                            <option value="muscle_gain">Muscle Gain</option>
+                            <option value="maintenance">Maintenance</option>
+                            <option value="endurance">Endurance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="activity">Activity Level</label>
+                        <select id="activity" required>
+                            <option value="">Select Activity</option>
+                            <option value="sedentary">Sedentary (little/no exercise)</option>
+                            <option value="light">Light (1-3 days/week)</option>
+                            <option value="moderate">Moderate (3-5 days/week)</option>
+                            <option value="very_active">Very Active (6-7 days/week)</option>
+                            <option value="extra_active">Extra Active (2x/day)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" min="15" max="80" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </form>
+                <button onclick="generateDietPlan()" class="btn btn-secondary">
+                    <i class="fas fa-magic"></i>
+                    Generate Diet Plan
+                </button>
+                <div class="diet-result" id="dietResult">
+                    <h3>Your Personalized Diet Plan</h3>
+                    <div id="calorieNeeds"></div>
+                    <div id="macroBreakdown"></div>
+                    <div id="mealSuggestions"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FitLife Pro</h3>
+                    <p>Your comprehensive health and fitness companion for a better lifestyle.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#health-tips">Health Tips</a></p>
+                    <p><a href="#nutrition">Nutrition</a></p>
+                    <p><a href="#diet-planner">Diet Planner</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> info@fitlifepro.com</p>
+                    <p><i class="fas fa-phone"></i> +1-555-FITLIFE</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Health Street, Fitness City</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #444; padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2025 FitLife Pro. All rights reserved. | Built with performance and accessibility in mind.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        navMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // BMI Calculator
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+
+            if (!height || !weight || height < 100 || weight < 30) {
+                alert('Please enter valid height and weight values.');
+                return;
+            }
+
+            const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
+            const bmiResult = document.getElementById('bmiResult');
+            const bmiValue = document.getElementById('bmiValue');
+            const bmiCategory = document.getElementById('bmiCategory');
+            const bmiAdvice = document.getElementById('bmiAdvice');
+
+            let category, advice, color;
+
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                advice = 'Consider consulting a nutritionist to develop a healthy weight gain plan with proper nutrition and strength training.';
+                color = '#3498db';
+            } else if (bmi < 25) {
+                category = 'Normal Weight';
+                advice = 'Great job! Maintain your current lifestyle with regular exercise and balanced nutrition.';
+                color = '#27ae60';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+                advice = 'Consider a balanced diet with portion control and regular cardio exercise. Consult a healthcare provider for guidance.';
+                color = '#f39c12';
+            } else {
+                category = 'Obese';
+                advice = 'We recommend consulting with a healthcare provider to develop a safe and effective weight loss plan.';
+                color = '#e74c3c';
+            }
+
+            bmiValue.innerHTML = `<h4 style="color: ${color}; font-size: 2rem;">${bmi}</h4>`;
+            bmiCategory.innerHTML = `<p style="color: ${color}; font-weight: bold; font-size: 1.2rem;">${category}</p>`;
+            bmiAdvice.innerHTML = `<p style="margin-top: 1rem;">${advice}</p>`;
+
+            bmiResult.style.display = 'block';
+            bmiResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Diet Plan Generator
+        function generateDietPlan() {
+            const goal = document.getElementById('goal').value;
+            const activity = document.getElementById('activity').value;
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+
+            if (!goal || !activity || !age || !gender) {
+                alert('Please fill in all fields to generate your diet plan.');
+                return;
+            }
+
+            // Calculate BMR and TDEE
+            const heightVal = 170; // Average height for calculation
+            const weightVal = 70; // Average weight for calculation
+
+            let bmr;
+            if (gender === 'male') {
+                bmr = 88.362 + (13.397 * weightVal) + (4.799 * heightVal) - (5.677 * age);
+            } else {
+                bmr = 447.593 + (9.247 * weightVal) + (3.098 * heightVal) - (4.330 * age);
+            }
+
+            const activityMultipliers = {
+                sedentary: 1.2,
+                light: 1.375,
+                moderate: 1.55,
+                very_active: 1.725,
+                extra_active: 1.9
+            };
+
+            let tdee = bmr * activityMultipliers[activity];
+            let targetCalories = tdee;
+
+            // Adjust calories based on goal
+            const goalAdjustments = {
+                weight_loss: -500,
+                muscle_gain: +300,
+                maintenance: 0,
+                endurance: +200
+            };
+
+            targetCalories += goalAdjustments[goal];
+
+            // Calculate macronutrient breakdown
+            let proteinPercent, carbPercent, fatPercent;
+
+            switch(goal) {
+                case 'weight_loss':
+                    proteinPercent = 35;
+                    carbPercent = 35;
+                    fatPercent = 30;
+                    break;
+                case 'muscle_gain':
+                    proteinPercent = 30;
+                    carbPercent = 45;
+                    fatPercent = 25;
+                    break;
+                case 'endurance':
+                    proteinPercent = 20;
+                    carbPercent = 60;
+                    fatPercent = 20;
+                    break;
+                default:
+                    proteinPercent = 25;
+                    carbPercent = 45;
+                    fatPercent = 30;
+            }
+
+            const proteinCalories = (targetCalories * proteinPercent) / 100;
+            const carbCalories = (targetCalories * carbPercent) / 100;
+            const fatCalories = (targetCalories * fatPercent) / 100;
+
+            const proteinGrams = Math.round(proteinCalories / 4);
+            const carbGrams = Math.round(carbCalories / 4);
+            const fatGrams = Math.round(fatCalories / 9);
+
+            // Generate meal suggestions based on goal
+            const mealPlans = {
+                weight_loss: {
+                    breakfast: ["Greek yogurt with berries and almonds", "Vegetable omelet with whole grain toast", "Protein smoothie with spinach and banana"],
+                    lunch: ["Grilled chicken salad with mixed greens", "Quinoa bowl with roasted vegetables", "Tuna wrap with whole wheat tortilla"],
+                    dinner: ["Baked salmon with steamed broccoli", "Lean beef stir-fry with vegetables", "Grilled chicken breast with sweet potato"],
+                    snacks: ["Apple with almond butter", "Carrot sticks with hummus", "Greek yogurt with cucumber"]
+                },
+                muscle_gain: {
+                    breakfast: ["Oatmeal with protein powder and banana", "Scrambled eggs with avocado toast", "Protein pancakes with Greek yogurt"],
+                    lunch: ["Chicken and rice bowl with vegetables", "Beef and quinoa stuffed bell peppers", "Salmon with brown rice and asparagus"],
+                    dinner: ["Lean steak with sweet potato and green beans", "Chicken breast with pasta and marinara", "Fish tacos with black beans"],
+                    snacks: ["Protein shake with banana", "Trail mix with nuts and dried fruit", "Cottage cheese with pineapple"]
+                },
+                maintenance: {
+                    breakfast: ["Whole grain cereal with milk and fruit", "Avocado toast with poached egg", "Smoothie bowl with granola"],
+                    lunch: ["Mediterranean quinoa salad", "Chicken and vegetable soup with bread", "Turkey and avocado wrap"],
+                    dinner: ["Grilled fish with roasted vegetables", "Chicken stir-fry with brown rice", "Vegetarian chili with cornbread"],
+                    snacks: ["Mixed nuts and dried fruit", "Yogurt with granola", "Whole grain crackers with cheese"]
+                },
+                endurance: {
+                    breakfast: ["Oatmeal with banana and honey", "Whole grain toast with peanut butter", "Energy smoothie with dates and oats"],
+                    lunch: ["Pasta with lean meat sauce", "Quinoa salad with chickpeas", "Sweet potato and black bean bowl"],
+                    dinner: ["Chicken with rice and vegetables", "Salmon with quinoa and roasted vegetables", "Lean beef with pasta and marinara"],
+                    snacks: ["Energy balls with oats and dates", "Banana with almond butter", "Whole grain crackers with hummus"]
+                }
+            };
+
+            // Display results
+            const dietResult = document.getElementById('dietResult');
+            const calorieNeeds = document.getElementById('calorieNeeds');
+            const macroBreakdown = document.getElementById('macroBreakdown');
+            const mealSuggestions = document.getElementById('mealSuggestions');
+
+            calorieNeeds.innerHTML = `
+                <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                    <h4><i class="fas fa-fire"></i> Daily Calorie Target</h4>
+                    <p style="font-size: 2rem; font-weight: bold; color: #ffeb3b;">${Math.round(targetCalories)} calories</p>
+                    <p>Based on your ${goal.replace('_', ' ')} goal and ${activity.replace('_', ' ')} activity level</p>
+                </div>
+            `;
+
+            macroBreakdown.innerHTML = `
+                <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                    <h4><i class="fas fa-chart-pie"></i> Macronutrient Breakdown</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: #ff6b6b;">Protein</div>
+                            <div>${proteinGrams}g (${proteinPercent}%)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: #4ecdc4;">Carbs</div>
+                            <div>${carbGrams}g (${carbPercent}%)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: #ffe66d;">Fats</div>
+                            <div>${fatGrams}g (${fatPercent}%)</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const meals = mealPlans[goal];
+            mealSuggestions.innerHTML = `
+                <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                    <h4><i class="fas fa-utensils"></i> Sample Meal Plan</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div>
+                            <h5 style="color: #ffeb3b; margin-bottom: 0.5rem;"><i class="fas fa-sun"></i> Breakfast</h5>
+                            <ul style="list-style: none; padding: 0;">
+                                ${meals.breakfast.map(meal => `<li style="margin: 0.5rem 0;">• ${meal}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: #ffeb3b; margin-bottom: 0.5rem;"><i class="fas fa-cloud-sun"></i> Lunch</h5>
+                            <ul style="list-style: none; padding: 0;">
+                                ${meals.lunch.map(meal => `<li style="margin: 0.5rem 0;">• ${meal}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: #ffeb3b; margin-bottom: 0.5rem;"><i class="fas fa-moon"></i> Dinner</h5>
+                            <ul style="list-style: none; padding: 0;">
+                                ${meals.dinner.map(meal => `<li style="margin: 0.5rem 0;">• ${meal}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: #ffeb3b; margin-bottom: 0.5rem;"><i class="fas fa-cookie-bite"></i> Snacks</h5>
+                            <ul style="list-style: none; padding: 0;">
+                                ${meals.snacks.map(meal => `<li style="margin: 0.5rem 0;">• ${meal}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                        <h5 style="color: #ffeb3b;"><i class="fas fa-lightbulb"></i> Pro Tips</h5>
+                        <p>• Drink plenty of water throughout the day</p>
+                        <p>• Eat every 3-4 hours to maintain energy levels</p>
+                        <p>• Adjust portions based on your hunger and energy needs</p>
+                        <p>• Include a variety of colorful vegetables in your meals</p>
+                    </div>
+                </div>
+            `;
+
+            dietResult.style.display = 'block';
+            dietResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Scroll to top functionality
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Lazy loading for images (if any images are added later)
+        const lazyImages = document.querySelectorAll('img[data-lazy]');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.lazy;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+
+        // Performance optimization: Debounce scroll events
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Add animation on scroll for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card, .tip-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                observer.observe(card);
+            });
+        });
+
+        // Add loading state to buttons
+        function addLoadingState(button) {
+            const originalText = button.innerHTML;
+            button.innerHTML = '<span class="loading"></span> Processing...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 1000);
+        }
+
+        // Enhanced form validation
+        function validateForm(formId) {
+            const form = document.getElementById(formId);
+            const inputs = form.querySelectorAll('input, select');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    input.style.border = '2px solid #e74c3c';
+                    isValid = false;
+                } else {
+                    input.style.border = '';
+                }
+            });
+
+            return isValid;
+        }
+
+        // Service Worker for offline functionality (optional enhancement)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Accessibility improvements
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Add focus styles for keyboard navigation
+        const style = document.createElement('style');
+        style.textContent = `
+            .keyboard-navigation *:focus {
+                outline: 2px solid var(--primary-color) !important;
+                outline-offset: 2px;
+            }
+        `;
+        document.head.appendChild(style);
+
+        console.log('FitLife Pro - Health & Fitness Web App loaded successfully!');
+        console.log('Performance optimized with lazy loading, debounced events, and accessibility features.');
+    </script>
+</body>
+</html>
